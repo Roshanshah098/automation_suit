@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>CV Screening — Test Form</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 480px; margin: 48px auto; color: #222; }
+  h1 { font-size: 1.3rem; }
+  label { display: block; margin-top: 14px; font-weight: 600; font-size: 0.9rem; }
+  input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
+  button { margin-top: 20px; padding: 10px 18px; cursor: pointer; }
+  pre { background: #f4f4f4; padding: 12px; margin-top: 20px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <h1>Application for Software Engineer Position</h1>
+  <form id="cvForm">
+    <label>Full Name <input name="fullName" required /></label>
+    <label>E-mail <input name="email" type="email" required /></label>
+    <label>Expectation <input name="expectation" placeholder="2000-3000$" required /></label>
+    <label>LinkedIn <input name="linkedin" required /></label>
+    <label>Resume/CV (PDF) <input name="resume" type="file" accept="application/pdf" required /></label>
+    <button type="submit">Submit</button>
+  </form>
+  <pre id="result"></pre>
+
+<script>
+document.getElementById('cvForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const result = document.getElementById('result');
+  result.textContent = 'Submitting...';
+  const formData = new FormData(e.target);
+  try {
+    const res = await fetch('/api/cv-screening', { method: 'POST', body: formData });
+    const data = await res.json();
+    result.textContent = JSON.stringify(data, null, 2);
+  } catch (err) {
+    result.textContent = 'Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

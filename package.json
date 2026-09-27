@@ -1,0 +1,24 @@
+{
+  "name": "claude-automation-suite",
+  "version": "1.0.0",
+  "description": "Combined Node.js app for CV Screening, Invoice Extraction, and Smart AI Webhook Router — all powered by the Claude API. Converted from n8n workflows.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "get-google-token": "node scripts/getGoogleRefreshToken.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "googleapis": "^144.0.0",
+    "morgan": "^1.10.0",
+    "multer": "^2.4.0",
+    "node-cron": "^3.0.3",
+    "pdf-parse": "^1.1.1",
+    "uuid": "^10.0.0"
+  }
+}
